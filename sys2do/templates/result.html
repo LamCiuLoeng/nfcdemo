@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>NFC Demo</title>
+ <style type="text/css">
+ body{
+	 margin:0px;
+	 padding:0px;
+	 background:#000;
+ }
+ .content_table {	border-top:#000 3px solid;
+	border-left:#000 3px solid;
+	border-right:#000 3px solid;
+}
+.content_table td{
+	background:#FFF;
+	padding:15px;
+}
+.key_div {	line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bolder;
+	color:#000;
+}
+.value_div {	line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:#987948;
+}
+ </style>
+ </head>
+<body>
+    {% if msg_type == 'INFO' %}
+    <table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img src="/static/images/NFC_webpage_01.jpg" width="720" height="157" /></td>
+      </tr>
+      <tr>
+        <td align="center"><table width="590" border="0" cellpadding="0" cellspacing="8" class="content_table">
+          <tr>
+            <td align="left"><div class="key_div">AuthCode :</div>
+              <div class="value_div">{{obj.authcode}}</div></td>
+          </tr>
+          <tr>
+            <td align="left"><div class="key_div">Registered To :</div>
+              <div class="value_div">{{'%s %s' %(obj.registered_to_first,obj.registered_to_last)}}</div></td>
+          </tr>
+          <tr>
+            <td align="left"><div class="key_div">E-mail Address :</div>
+              <div class="value_div">{{obj.email_address}}</div></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td align="center" style="padding:30px 0px 0px 0px;"><img src="/static/images/NFC_webpage1_04.jpg" width="586" height="118" /></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="/static/images/NFC_webpage_07.jpg" width="586" height="358" /></td>
+      </tr>
+    </table>
+    
+    {% else %}
+        <table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img src="/static/images/NFC_webpage_01.jpg" width="720" height="157" /></td>
+      </tr>
+      <tr>
+        <td align="center">
+	        <table width="590" border="0" cellpadding="0" cellspacing="8" class="content_table">
+	          <tr>
+	            <td align="left"><div class="key_div">Message :</div>
+	              <div class="value_div">{{msg}}</div></td>
+	          </tr>
+	        </table>
+       </td>
+      </tr>
+      <!-- 
+      <tr>
+        <td align="center" style="padding:30px 0px 0px 0px;">
+            
+	        <img src="/static/images/NFC_webpage1_04.jpg" width="586" height="118" />
+	    </td>
+      </tr>
+      -->
+      <tr>
+        <td align="center"><img src="/static/images/NFC_webpage_07.jpg" width="586" height="358" /></td>
+      </tr>
+    </table>
+    
+    {% endif %}
+</body>
+</html>

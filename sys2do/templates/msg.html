@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>NFC Demo</title>
+ <style type="text/css">
+ body{
+	 margin:0px;
+	 padding:0px;
+	 background:#000;
+ }
+ .content_table {	border-top:#000 3px solid;
+	border-left:#000 3px solid;
+	border-right:#000 3px solid;
+}
+.content_table td{
+	background:#FFF;
+	padding:15px;
+}
+.key_div {	line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bolder;
+	color:#000;
+}
+.value_div {	line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:#987948;
+}
+ </style>
+ </head>
+<body>
+    
+    <table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img src="/static/images/NFC_webpage_01.jpg" width="720" height="157" /></td>
+      </tr>
+      <tr>
+        <td align="center"><table width="590" border="0" cellpadding="0" cellspacing="8" class="content_table">
+          <tr>
+            <td align="left"><div class="key_div">Item No :</div>
+              <div class="value_div">123456789</div></td>
+          </tr>
+          <tr>
+            <td align="left"><div class="key_div">Registered To :</div>
+              <div class="value_div">{% if msg_type == 'ERROR' %}
+        {{msg}}
+    {% elif msg_type == 'WARNING' %}
+        {{msg}}
+    {% elif msg_type == 'INFO' %}
+        {{msg}}
+    {% endif %}</div></td>
+          </tr>
+          <tr>
+            <td align="left"><div class="key_div">E-mail Address :</div>
+              <div class="value_div">cl.lam@r-pac.com.cn</div></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td align="center" style="padding:30px 0px 0px 0px;"><img src="/static/images/NFC_webpage_04.jpg" width="586" height="118" /></td>
+      </tr>
+      <tr>
+        <td align="center"><img src="/static/images/NFC_webpage_07.jpg" width="586" height="358" /></td>
+      </tr>
+    </table>
+</body>
+</html>

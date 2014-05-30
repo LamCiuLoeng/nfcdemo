@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title>NFC Demo</title>
+  
+  <script src="/static/js/jquery-1.7.1.min.js" type="text/javascript"></script> 
+  <script language="JavaScript" type="text/javascript">
+	//<![CDATA[
+	    function tosave(){
+	       var msg = [];
+           var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;  
+           
+           
+	       if(!$("#registered_to_first").val() || !$("#registered_to_last").val()){
+	           msg.push("Please input the 'Registered To'!");
+	       }
+	       
+		   var email = $("#email").val();
+	       if(!email){
+               msg.push("Please input the 'E-mail Address'!");
+           }else if(!mailformat.test(email)){
+			   msg.push("Please input the correct e-mail address!");
+		   }
+           
+           var year = $("#birthday_y").val();
+           var month = $("#birthday_m").val();
+           var day = $("#birthday_d").val();
+           
+           if(!year || !month ||!day){
+               msg.push("Please input the Birthday!");
+           }
+           
+           var location = $("#location_id").val();
+           if(!location){
+               msg.push("Please input the Location!");
+           }
+           
+           if(msg.length > 0){
+               alert(msg.join('\n'));
+               return false;
+           }else{
+               $("form").submit();
+           }
+  
+	    }
+	//]]>
+	</script>
+  
+ <style type="text/css">
+ body{
+	 margin:0px;
+	 padding:0px;
+	 background:#000;
+ }
+ .content_table {	border-top:#000 3px solid;
+	border-left:#000 3px solid;
+	border-right:#000 3px solid;
+}
+.content_table td{
+	background:#FFF;
+	padding:15px;
+}
+.key_div {line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:18px;
+	font-weight:bolder;
+	color:#000;
+}
+.value_div {line-height:30px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	font-weight:bold;
+	color:#F90;
+}
+.check_input{
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:22px;
+	width:490px;
+	border:#987948 4px solid;
+	height:40px;
+	line-height:40px;
+}
+
+.check_input2{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:22px;
+    width:100px;
+    border:#987948 4px solid;
+    height:40px;
+    line-height:40px;
+}
+
+.check_button{
+	width:100px;
+	height:35px;
+	background:#987948;
+	border:#555 3px solid;
+	color:#FFF;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	font-weight:bold;
+}
+ </style>
+ </head>
+<body>
+    <form action="/s" method="post">
+        <input type="hidden" name="id" value="{{obj.id}}"/>
+        <table width="720" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td><img src="/static/images/NFC_webpage_01.jpg" width="720" height="157" /></td>
+          </tr>
+          <tr>
+            <td align="center"><table width="590" border="0" cellpadding="0" cellspacing="15" class="content_table">
+              <tr>
+                <td align="center"><div class="key_div">Registered To :</div>
+                  <div class="value_div">
+                    <!-- <input name="name" id="name" type="text" class="check_input" /> -->
+                    First Name : <input name="registered_to_first" id="registered_to_first" type="text" class="check_input2" />
+                    Last Name : <input name="registered_to_last" id="registered_to_last" type="text" class="check_input2" />
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="center"><div class="key_div">E-mail Address :</div>
+                  <div class="value_div"><input name="email" id="email" type="text" class="check_input" /></div></td>
+              </tr>
+              <tr>
+                <td align="center"><div class="key_div">Birthday :</div>
+                  <div class="value_div">
+                    Year : <select name="birthday_y" class="check_input2" id="birthday_y">
+                        <option value=""></option>
+                        {% for i in range(1970,2011) %}
+                            <option value="{{'%02d' %i}}">{{'%02d' %i}}</option>
+                        {% endfor %}
+                    </select>
+                    Month : <select name="birthday_m" class="check_input2" id="birthday_m">
+                        <option value=""></option>
+                        {% for i in range(1,13) %}
+                            <option value="{{'%02d' %i}}">{{'%02d' %i}}</option>
+                        {% endfor %}
+                    </select>
+                    Day : <select name="birthday_d" class="check_input2" id="birthday_d">
+                        <option value=""></option>
+                        {% for i in range(1,32) %}
+                            <option value="{{'%02d' %i}}">{{'%02d' %i}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="center"><div class="key_div">Location :</div>
+                  <div class="value_div">
+                    <select name="location_id" class="check_input" id="location_id">
+                        <option value=""></option>
+                        {% for l in locations %}
+                            <option value="{{l.id}}">{{l}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td align="center"><div class="key_div">Place of Purchase :</div>
+                  <div class="value_div"><input name="purchase_place" id="purchase_place" type="text" class="check_input"/></div>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td align="center" style="padding:30px 0px 0px 0px;"><input name="button" type="button" class="check_button" id="button" value="Submit" onclick="tosave()"/>&nbsp;</td>
+          </tr>
+          <tr>
+            <td align="center"><img src="/static/images/NFC_webpage_07.jpg" width="586" height="358" /></td>
+          </tr>
+        </table>
+    </form>
+ </body>
+</html>

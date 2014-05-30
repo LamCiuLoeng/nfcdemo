@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+ <link href="/static/css/CSS_STYLE.css" rel="stylesheet" type="text/css">
+
+ <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ </head>
+
+ <body class="report_body">
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="137"><img src="/static/images/report_02.jpg" width="190" height="137"></td>
+  </tr>
+  <tr>
+    <td style="padding:20px;"><a href="/export"><img src="/static/images/report_06.jpg" width="152" height="32"></a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="data_list">
+        <thead>
+            <tr>
+                <th width="100">AuthCode</th>
+                <th width="200">Company</th>
+                <th width="100">Serial</th>
+                <th width="200">Registration Date</th>
+                <th width="150">Registered To</th>
+                <th width="200">E-mail Address</th>
+                <th width="100">Birthday</th>
+                <th width="100">Location</th>
+                <th width="250">Place of Purchase</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d,location in data %}
+                <tr>
+                    <td>{{d.authcode|f}}</td>
+                    <td>{{d.company}}</td>
+                    <td>{{d.serial}}</td>
+                    <td>{{d.registration_date|fd}}</td>
+                    <td>{{'%s %s' %(d.registered_to_first or '',d.registered_to_last or '')|f}}</td>
+                    <td>{{d.email_address|f}}</td>
+                    <td>{{d.birthday|f}}</td>
+                    <td>{{location|f}}</td>
+                    <td>{{d.purchase_place|f}}</td>                    
+                </tr>
+            {%endfor%}
+        </tbody>
+ </body>
+</html>
